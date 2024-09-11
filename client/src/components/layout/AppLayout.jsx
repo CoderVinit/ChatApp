@@ -1,17 +1,19 @@
 import { Drawer, Grid, Skeleton } from '@mui/material';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useErrors, useSocketEvents } from '../../hooks/Hooks';
 import { useMyChatsQuery } from '../../redux/api/api';
-import { setIsMobileMenu } from '../../redux/reducres/misc';
+import { setIsDeleteMenu, setIsMobileMenu, setSelectedDeleteChat } from '../../redux/reducres/misc';
 import { getSocket } from '../../socket';
 import Title from '../shared/Title';
 import Profile from '../specific/Profile';
 import ChatList from './ChatList';
 import Header from './Header';
-import { NEW_MESSAGES_ALERT, NEW_REQUEST } from '../../constants/events';
+import { NEW_MESSAGES_ALERT, NEW_REQUEST, REFETCH_CHATS } from '../../constants/events';
 import { increamentNotificationCount, setNewMessagesAlert } from '../../redux/reducres/chat';
+import { getOrSaveFromStorage } from '../../lib/Features';
+import DeleteChatMenu from '../dialog/DeleteChatMenu';
 
 
 
@@ -19,7 +21,9 @@ import { increamentNotificationCount, setNewMessagesAlert } from '../../redux/re
 const AppLayout = () => (WrappedComponent) => {
   return (props) => {
     const params = useParams();
+    const navigate = useNavigate()
     const chatId = params.chatId
+    const deleteMenuAnchor = useRef(null)
     const { isMobileMenu } = useSelector(state => state.misc)
     const { newMessagesAlert } = useSelector(state => state.chat)
     const { user } = useSelector(state => state.auth)
@@ -29,32 +33,44 @@ const AppLayout = () => (WrappedComponent) => {
 
     useErrors([{ isError, error }])
 
+
+    useEffect(() => {
+      getOrSaveFromStorage({ key: NEW_MESSAGES_ALERT, value: newMessagesAlert })
+    }, [newMessagesAlert])
+
     const socket = getSocket()
 
 
 
 
-    const handleDeleteChat = (e, _id, groupChat) => {
-      e.preventDefault();
-      console.log("Delete Chat", _id, groupChat)
+    const handleDeleteChat = (e, chatId, groupChat) => {
+      dispatch(setIsDeleteMenu(true))
+      dispatch(setSelectedDeleteChat({ chatId, groupChat }))
+      deleteMenuAnchor.current = e.currentTarget;
     }
 
     const handleMobileClose = () => dispatch(setIsMobileMenu(false))
 
 
     const newMessageAlertHandler = useCallback((data) => {
-      if (data.chatId !== chatId) {
-        dispatch(setNewMessagesAlert(data))
-      }
-    }, [])
+      if (data.chatId === chatId) return;
+      dispatch(setNewMessagesAlert(data))
+    }, [chatId])
+
     const newRequestHandler = useCallback(() => {
       dispatch(increamentNotificationCount())
     }, [dispatch])
 
+    const refetchListener = useCallback(() => {
+      refetch()
+      navigate("/")
+    }, [refetch, navigate])
+
 
     const eventHandlers = {
       [NEW_MESSAGES_ALERT]: newMessageAlertHandler,
-      [NEW_REQUEST]: newRequestHandler
+      [NEW_REQUEST]: newRequestHandler,
+      [REFETCH_CHATS]: refetchListener
     }
 
     useSocketEvents(socket, eventHandlers)
@@ -63,6 +79,8 @@ const AppLayout = () => (WrappedComponent) => {
       <>
         <Title />
         <Header />
+
+        <DeleteChatMenu dispatch={dispatch} deleteMenuAnchor={deleteMenuAnchor} />
 
         {
           isLoading ? <Skeleton /> : (

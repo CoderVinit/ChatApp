@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useEffect } from "react"
 import { toast } from "react-hot-toast"
+import { useSelector } from 'react-redux'
 
 
 
@@ -10,7 +11,7 @@ const useErrors = (errors = []) => {
     errors.forEach(({ isError, error, fallback }) => {
       if (isError) {
         if (fallback) fallback();
-        else toast.error(error?.data?.message || "Something went wrong")
+        else toast.error(error?.data?.message || "Something went Wrong")
       }
     })
   }, [errors])
@@ -23,21 +24,23 @@ const useAsyncMutation = (mutationHook) => {
 
   const [mutate] = mutationHook()
 
-  const executeMutation = async (toastMessage, ...args) => {
+  const executeMutation = async (toastmessage, ...args) => {
     setIsLoading(true)
-    const toastId = toast.loading(toastMessage || "Updating data...")
+    const toastId = toast.loading(toastmessage || "Updating data...")
 
     try {
       const res = await mutate(...args);
-      if (res.data) {
+      if (res?.data.success) {
+        toast.success(res.data.message || "Updated data Successfully", { id: toastId })
         setData(res.data)
-        toast.success(res.data.message, { id: toastId })
       }
       else {
-        toast.error(res?.error?.data?.message || "Something went wrong", { id: toastId })
+        toast.error(res?.data?.message, "Something went wrong!", { id: toastId })
+        setIsLoading(false);
       }
     } catch (error) {
       toast.error("Something Went Wrong", { id: toastId })
+      setIsLoading(false)
     }
     finally {
       setIsLoading(false)

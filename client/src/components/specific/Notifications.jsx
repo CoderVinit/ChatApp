@@ -27,7 +27,6 @@ const Notifications = () => {
       }
     } catch (error) {
       toast.error(error.message)
-      console.log(error)
     }
   }
   const handleClose = () => dispatch(setIsNotification(false))

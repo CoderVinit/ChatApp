@@ -9,7 +9,7 @@ import userRoutes from "./routes/userRoutes.js";
 import { connectDb } from "./utils/features.js";
 import { Server } from 'socket.io'
 import { createServer } from 'http'
-import { NEW_MESSAGE, NEW_MESSAGES_ALERT } from "./constants/events.js";
+import { NEW_MESSAGE, NEW_MESSAGES_ALERT, START_TYPING, STOP_TYPING } from "./constants/events.js";
 import { v4 as uuid } from 'uuid'
 import { getSockets } from "./lib/helper.js";
 import { Message } from "./models/messageModel.js";
@@ -95,7 +95,6 @@ io.on('connection', (socket) => {
       chat: chatId,
     }
 
-    console.log("Emmiting", messageForRealTime)
 
     const membersSocket = getSockets(members)
     io.to(membersSocket).emit(NEW_MESSAGE, { chatId, message: messageForRealTime })
@@ -106,6 +105,16 @@ io.on('connection', (socket) => {
     } catch (error) {
       console.log(error)
     }
+  })
+
+  socket.on(START_TYPING, ({ members, chatId }) => {
+    const membersSockets = getSockets(members);
+    socket.to(membersSockets).emit(START_TYPING, { chatId });
+  })
+
+  socket.on(STOP_TYPING, ({ members, chatId }) => {
+    const membersSockets = getSockets(members);
+    socket.to(membersSockets).emit(STOP_TYPING, { chatId });
   })
 
   socket.on('disconnect', () => {

@@ -11,15 +11,7 @@ import { ErrorHandler } from '../utils/utitlity.js';
 
 const newGroupChat = TryCatch(async (req, res, next) => {
   const { name, members } = req.body;
-  // if (members.length < 2) {
-  //   return next(new ErrorHandler('More than 2 members are required to form a group chat', 401))
-  // }
 
-  const chat = await Chat.find({ name });
-
-  if (chat) {
-    return next(new ErrorHandler('Group with this name already exists', 401))
-  }
 
   const allMembers = [...members, req.user];
   await Chat.create({
@@ -74,7 +66,7 @@ const getMyGroups = TryCatch(async (req, res, next) => {
   }))
 
 
-  return res.status(200).json({ success: true, message: "Group Created Successfully", chats: groups })
+  return res.status(200).json({ success: true, message: "Group Created Successfully", groups: groups })
 
 })
 
@@ -82,10 +74,6 @@ const getMyGroups = TryCatch(async (req, res, next) => {
 const addMembers = TryCatch(async (req, res, next) => {
 
   const { chatId, members } = req.body;
-
-  // if (!members || members.lenght < 1) {
-  //   return next(new ErrorHandler('Please add atleast one member', 400))
-  // }
 
   const chat = await Chat.findById(chatId);
 
@@ -138,26 +126,26 @@ const removeMember = TryCatch(async (req, res, next) => {
   ]);
 
   if (!chat.groupChat) {
-    return next(new ErrorHandler('This is not a group chat', 400));
+    return next(new ErrorHandler("This is not a group chat", 400));
   }
   if (!chat) {
-    return next(new ErrorHandler('Chat not found', 404));
+    return next(new ErrorHandler("Chat not found", 404));
   }
 
   if (chat.creator.toString() !== req.user.toString()) {
-    return next(new ErrorHandler('Only the creator can remove members', 404));
+    return next(new ErrorHandler("Only the creator can remove members", 404));
   }
 
-  if (chat.members <= 3) {
-    return next(new ErrorHandler('Group must have atleast 3 members', 400));
-  }
+  if (chat.members.length <= 3) return next(new ErrorHandler("Group have atleast 3 members", 200));
 
+
+  const allChatMembers = chat.members.map((i) => i.toString());
   chat.members = chat.members.filter(i => i.toString() !== userId);
 
   await chat.save();
 
   emitEvent(req, ALERT, chat.members, `${userThatWillBeRemoved.name} has been removed from the group`);
-  emitEvent(req, REFETCH_CHATS, chat.members);
+  emitEvent(req, REFETCH_CHATS, allChatMembers);
 
   return res.status(200).json({ success: true, message: `${userThatWillBeRemoved.name} has been removed from the group` })
 
@@ -166,7 +154,6 @@ const removeMember = TryCatch(async (req, res, next) => {
 const leaveGroup = TryCatch(async (req, res, next) => {
   const chatId = req.params.id;
   const chat = await Chat.findById(chatId);
-  console.log(chatId)
 
   if (!chat.groupChat) {
     return next(new ErrorHandler('This is not a group chat', 400));
@@ -346,7 +333,7 @@ const deleteGroup = TryCatch(async (req, res, next) => {
   return res.status(200).json({ success: true, message: "Chat deleted successfully" })
 
 
-  return res.status(200).json({ success: true, message: "Group deleted successfully" })
+  // return res.status(200).json({ success: true, message: "Group deleted successfully" })
 
 })
 
@@ -355,6 +342,11 @@ const getMessageDetails = TryCatch(async (req, res, next) => {
   const messageId = req.params.id;
 
   const { page = 1 } = req.query;
+  const chat = await Chat.findById(messageId);
+
+  if (!chat) return next(new ErrorHandler("Chat Not Found", 404));
+
+  if (!chat.members.includes(req.user.toString())) return next(new ErrorHandler("You are not allowed to access this chat", 404));
 
   const resultPerPage = 20;
   const skip = (page - 1) * resultPerPage;

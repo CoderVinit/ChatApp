@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import React, { Suspense, lazy, useEffect } from 'react'
 import ProtectedRoute from './components/auth/ProtectedRoute'
-import LayoutLoader from './components/layout/LayoutLoader'
+import { LayoutLoader } from './components/layout/Loader'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 // eslint-disable-next-line

@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import { v4 as uuid } from "uuid"
 import { getBase64, getSockets } from "../lib/helper.js";
 import { v2 as cloudinary } from 'cloudinary'
+import { ErrorHandler } from "./utitlity.js";
 
 const cookieOption = {
   maxAge: 15 * 24 * 60 * 60 * 1000,
@@ -16,7 +17,7 @@ const connectDb = (uri) => {
     mongoose.connect(uri);
     console.log("MongoDB Connected...");
   } catch (error) {
-    console.log(error.message)
+    return next(new ErrorHandler(error.message, 301))
   }
 }
 

@@ -14,7 +14,6 @@ import { getOtherGroupMembers } from '../lib/helper.js'
 const newUser = TryCatch(async (req, res, next) => {
 
   const { name, username, password, bio } = req.body;
-  console.log(bio)
 
 
   const file = req.file;
@@ -42,17 +41,15 @@ const login = TryCatch(async (req, res, next) => {
   const user = await User.findOne({ username }).select("+password");
 
   if (!user) {
-    return next(new ErrorHandler("Invalid Username", 400))
+    return next(new ErrorHandler("User Not Found", 401));
   }
 
   const isMatched = await compare(password, user?.password);
 
-  if (!isMatched) return next(new ErrorHandler("Invalid Password", 400))
+  if (!isMatched) return next(new ErrorHandler("Invalid Password", 400));
 
   // Send token to the client
   sendToken(res, user, 200, `welcome back ${user.name}`);
-
-
 
 })
 

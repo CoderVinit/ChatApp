@@ -31,6 +31,13 @@ const chatSlice = createSlice({
           count: 1,
         });
       }
+    },
+    removeNewMessagesAlert: (state, action) => {
+      state.newMessagesAlert = state.newMessagesAlert.filter(
+        (item) => item.chatId !== action.payload
+      )
+
+
     }
   }
 })
@@ -43,6 +50,7 @@ export default chatSlice;
 export const {
   increamentNotificationCount,
   resetNotificationCount,
-  setNewMessagesAlert
+  setNewMessagesAlert,
+  removeNewMessagesAlert
 
 } = chatSlice.actions;

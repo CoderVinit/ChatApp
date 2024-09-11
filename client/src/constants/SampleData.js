@@ -1,13 +1,13 @@
 export const sampleChats = [
   {
-    avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
     _id: '1',
     name: 'John Doe',
     groupChat: false,
     members: ["1", "2"]
   },
   {
-    avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
     _id: '2',
     name: 'John Dang',
     groupChat: false,
@@ -18,12 +18,12 @@ export const sampleChats = [
 
 export const sampleUser = [
   {
-    avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
     _id: '1',
     name: 'John Doe',
   },
   {
-    avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
     _id: '2',
     name: 'John Dang',
   },
@@ -33,14 +33,14 @@ export const sampleUser = [
 export const sampleNotification = [
   {
     sender: {
-      avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
+      avatar: "https://www.w3schools.com/howto/img_avatar.png",
       name: 'John Doe',
     },
     _id: '1',
   },
   {
     sender: {
-      avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
+      avatar: "https://www.w3schools.com/howto/img_avatar.png",
       name: 'John Dang',
     },
     _id: '2',
