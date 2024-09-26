@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 router.post("/varify", adminLoginValidators(), validate, loginAdmin)
-router.post("/logout", adminLogout)
+router.get("/logout", adminLogout)
 
 router.use(adminOnly)
 

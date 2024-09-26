@@ -24,9 +24,7 @@ const loginAdmin = TryCatch(async (req, res, next) => {
 })
 
 const adminLogout = TryCatch(async (req, res, next) => {
-
-  res.status(200).cookie("admin-token", "", { ...cookieOption, maxAge: 0 }).json({ success: true, message: "logout Successful" })
-
+  return res.status(200).cookie("admin-token", "", { ...cookieOption, maxAge: 1000 * 0 }).json({ success: true, message: "logout Successful" })
 })
 
 const getAdminData = TryCatch(async (req, res, next) => {
@@ -41,16 +39,16 @@ const allUsers = TryCatch(async (req, res, next) => {
 
   const transformedUser = await Promise.all(users.map(async ({ _id, name, username, avatar }) => {
 
-    const [group, friends] = await Promise.all([
+    const [groups, friends] = await Promise.all([
       Chat.countDocuments({ groupChat: true, members: _id }),
       Chat.countDocuments({ groupChat: false, members: _id })
     ])
     return {
-      _id, name, username, avatar: avatar.url, group, friends
+      _id, name, username, avatar: avatar.url, groups, friends
     }
   }))
 
-  res.status(200).json({ success: true, transformedUser })
+  return res.status(200).json({ success: true, Users: transformedUser })
 
 })
 
@@ -86,7 +84,7 @@ const allChats = TryCatch(async (req, res, next) => {
 
 
 
-  res.status(200).json({ success: true, chats: transformedChat })
+  return res.status(200).json({ success: true, chats: transformedChat })
 
 })
 
@@ -110,7 +108,7 @@ const allMessages = TryCatch(async (req, res, next) => {
 
 
 
-  return res.status(200).json({ success: true, transformedMessages })
+  return res.status(200).json({ success: true, messages: transformedMessages })
 })
 
 

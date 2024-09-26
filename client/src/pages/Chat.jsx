@@ -95,8 +95,8 @@ const Chat = ({ chatId, user }) => {
 
 
   useEffect(() => {
-    if (!chatDetails.data?.chat) return navigate("/")
-  }, [chatDetails.data])
+    if (chatDetails.isError) return navigate("/")
+  }, [chatDetails.isError])
 
   const newMessageHandler = useCallback((data) => {
     if (data.chatId !== chatId) return;
@@ -118,9 +118,10 @@ const Chat = ({ chatId, user }) => {
     setFileMenuAnchor(e.currentTarget)
   }
 
-  const alertListener = useCallback((content) => {
+  const alertListener = useCallback((data) => {
+    if (data.chatId !== chatId) return;
     const messageForAlert = {
-      content,
+      content: data.message,
       sender: {
         _id: Math.random,
         name: "Admin"

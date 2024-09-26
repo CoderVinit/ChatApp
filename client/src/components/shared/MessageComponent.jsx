@@ -4,6 +4,7 @@ import { lightBlue } from '../../constants/Color';
 import moment from 'moment';
 import { FileFormate } from '../../lib/Features';
 import RenderAttachments from './RenderAttachments';
+import { motion } from "framer-motion";
 
 
 const MessageComponent = ({ message, user }) => {
@@ -14,9 +15,11 @@ const MessageComponent = ({ message, user }) => {
 
   const sameSender = sender?._id === user?._id;
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, x: "-100%" }}
+      whileInView={{ opacity: 1, x: 0 }}
       style={{
-        alignSelf: sameSender ? "flex-end" : "flex-start",
+        alignSelf: sameSender ? "flex-end" : "flex-stasrt",
         color: "black",
         backgroundColor: "white",
         width: "fit-content",
@@ -30,19 +33,21 @@ const MessageComponent = ({ message, user }) => {
       {
         content && <Typography>{content}</Typography>
       }
-      {attachments.length > 0 && attachments.map((attachment, index) => {
-        const url = attachment.url;
-        const file = FileFormate(url);
+      {
+        attachments.length > 0 && attachments.map((attachment, index) => {
+          const url = attachment.url;
+          const file = FileFormate(url);
 
-        return (
-          <Box key={index}>
-            <a href={url} target="_blank" rel="noreferrer" download style={{ color: "black" }} >{RenderAttachments(file, url)}</a>
-          </Box>
-        )
+          return (
+            <Box key={index}>
+              <a href={url} target="_blank" rel="noreferrer" download style={{ color: "black" }} >{RenderAttachments(file, url)}</a>
+            </Box>
+          )
 
-      })}
+        })
+      }
       <Typography variant='caption' color={"text.secondary"}>{timeAgo}</Typography>
-    </div>
+    </motion.div >
   )
 }
 

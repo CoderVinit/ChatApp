@@ -12,6 +12,7 @@ import { Validator } from '../utils/UsernameValidators'
 const Login = () => {
 
   const [isLogin, setIsLogin] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const name = useInputValidation("")
   const bio = useInputValidation("")
   const username = useInputValidation("", Validator)
@@ -22,6 +23,10 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault()
+
+    const toastId = toast.loading("Logging In...")
+
+    setIsLoading(true)
     const config = {
       withCredentials: true,
       headers: {
@@ -34,18 +39,23 @@ const Login = () => {
         username: username.value,
         password: password.value
       }, config)
-      dispatch(userExists(true))
-      toast.success(data.message)
+      dispatch(userExists(data.user))
+      toast.success(data.message, { id: toastId })
     } catch (error) {
-      toast.error(error?.response?.data?.message || "Something went wrong")
+      toast.error(error?.response?.data?.message || "Something went wrong", { id: toastId })
     }
-
+    finally {
+      setIsLoading(false)
+    }
   }
 
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
+    const toastId = toast.loading("Signing Up...");
+
+    setIsLoading(true)
     const formData = new FormData();
     formData.append('avatar', avatar.file);
     formData.append('name', name.value);
@@ -62,11 +72,14 @@ const Login = () => {
 
     try {
       const { data } = await axios.post("http://localhost:4000/api/v1/users/new", formData, config);
-      dispatch(userExists(true))
-      toast.success(data.message)
+      dispatch(userExists(data.user))
+      toast.success(data.message, { id: toastId })
     } catch (error) {
-      toast.error(error?.response?.data?.message || "Something went wrong")
+      toast.error(error?.response?.data?.message || "Something went wrong", {
+        id: toastId
+      })
     }
+    finally { setIsLoading(false) }
 
   }
 
@@ -88,9 +101,9 @@ const Login = () => {
             <form style={{ width: "100%", marginTop: "1rem" }} onSubmit={handleLogin}>
               <TextField label='username' value={username.value} onChange={username.changeHandler} fullWidth required margin='normal' variant='outlined' />
               <TextField label='password' value={password.value} onChange={password.changeHandler} type='password' fullWidth required margin='normal' variant='outlined' />
-              <Button sx={{ marginTop: '1rem' }} fullWidth variant='contained' color='primary' type='submit'>Login</Button>
+              <Button sx={{ marginTop: '1rem' }} fullWidth variant='contained' color='primary' type='submit' disabled={isLoading}>Login</Button>
               <Typography sx={{ textAlign: 'center', marginTop: 2 }}>OR</Typography>
-              <Button sx={{ marginTop: '1rem' }} fullWidth variant='text' onClick={toggleLogin}>Register</Button>
+              <Button sx={{ marginTop: '1rem' }} fullWidth variant='text' onClick={toggleLogin} disabled={isLoading}>Register</Button>
             </form>
           </>) : (<>
             <Typography variant='h5'>Register</Typography>
@@ -143,9 +156,9 @@ const Login = () => {
                   </Typography>
                 )
               } */}
-              <Button sx={{ marginTop: '1rem' }} fullWidth variant='contained' color='primary' type='submit'>SignUp</Button>
+              <Button sx={{ marginTop: '1rem' }} fullWidth variant='contained' color='primary' type='submit' disabled={isLoading}>SignUp</Button>
               <Typography sx={{ textAlign: 'center', marginTop: 2 }}>OR</Typography>
-              <Button fullWidth sx={{ marginTop: '1rem' }} variant='text' onClick={toggleLogin}>Login</Button>
+              <Button fullWidth sx={{ marginTop: '1rem' }} variant='text' onClick={toggleLogin} disabled={isLoading}>Login</Button>
             </form>
           </>)
         }

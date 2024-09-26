@@ -1,3 +1,4 @@
+import { useInputValidation } from "6pp";
 import {
   Button,
   Dialog,
@@ -8,14 +9,12 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { sampleUser } from "../../constants/SampleData";
-import UserItems from "../shared/UserItems";
-import { useInputValidation } from "6pp";
-import { useDispatch, useSelector } from "react-redux";
-import { useAvailableFriendsQuery, useNewGroupMutation } from "../../redux/api/api";
-import { useAsyncMutation, useErrors } from "../../hooks/Hooks";
-import { setIsNewGroup } from "../../redux/reducres/misc";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { useAsyncMutation, useErrors } from "../../hooks/Hooks";
+import { useAvailableFriendsQuery, useNewGroupMutation } from "../../redux/api/api";
+import { setIsNewGroup } from "../../redux/reducres/misc";
+import UserItems from "../shared/UserItems";
 
 const NewGroup = () => {
   const dispatch = useDispatch();

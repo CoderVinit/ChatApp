@@ -91,8 +91,8 @@ const Group = () => {
   }
 
   const deleteHandler = () => {
-    deleteGroup("Deleting Group...", chatId)
     closeConfirmDeleteHandler()
+    deleteGroup("Deleting Group...", chatId)
     navigate("/groups")
   }
   const removeMemberHandler = (id) => {

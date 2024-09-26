@@ -1,9 +1,10 @@
-import { Avatar, Box, Stack } from '@mui/material'
+import { useFetchData } from '6pp'
+import { Avatar, Box, Skeleton, Stack } from '@mui/material'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import RenderAttachments from "../../components/shared/RenderAttachments"
 import Table from '../../components/shared/Table'
-import { dashboardData } from '../../constants/SampleData'
+import { useErrors } from '../../hooks/Hooks'
 import { FileFormate, transformImage } from '../../lib/Features'
 import AdminLayout from './layout/AdminLayout'
 
@@ -25,6 +26,7 @@ const columns = [
 
 
       return attachments?.length > 0 ? attachments.map((i) => {
+        key: i;
         const file = FileFormate(i);
         // VerticalAlignBottom
         // console.log(file)
@@ -88,21 +90,31 @@ const MessageManagement = () => {
 
   const [rows, setRows] = useState([])
 
+  const { loading, data, error } = useFetchData(`http://localhost:4000/api/v1/admin/messages`, "dashboard-messages")
+
+  useErrors([{
+    isError: error,
+    error: error,
+  }])
+
   useEffect(() => {
-    setRows(dashboardData.messages.map((i) => ({
-      ...i, id: i._id, attachments: i.attachments.map((m) => transformImage(m.url, 50)),
-      sender: {
-        name: i.sender.name,
-        avatar: transformImage(i.sender.avatar, 50)
-      },
-      createdAt: moment(i.createdAt).format("MMMM Do YYYY, h:mm:ss, a")
-    })))
-  }, [])
+    if (data) {
+      setRows(data?.messages?.map((i) => ({
+        ...i, key: i._id, id: i._id, attachments: i.attachments.map((m) => transformImage(m.url, 50)),
+        sender: {
+          name: i.sender.name,
+          avatar: transformImage(i.sender.avatar, 50)
+        },
+        createdAt: moment(i.createdAt).format("MMMM Do YYYY, h:mm:ss, a")
+      })))
+    }
+  }, [data])
 
   return (
     <AdminLayout>
-      <Table heading={"All Messages"} column={columns} row={rows} rowHeight={200} />
-
+      {
+        loading ? <Skeleton height={"100vh"} /> : <Table heading={"All Messages"} column={columns} row={rows} rowHeight={200} />
+      }
     </AdminLayout>
   )
 }

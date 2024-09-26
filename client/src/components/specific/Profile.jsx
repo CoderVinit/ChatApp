@@ -8,6 +8,7 @@ import { transformImage } from '../../lib/Features'
 const Profile = () => {
 
   const { user } = useSelector(state => state.auth)
+  console.log(user.avatar)
 
   return (
     <Stack display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} >
