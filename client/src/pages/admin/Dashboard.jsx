@@ -10,7 +10,7 @@ import AdminLayout from './layout/AdminLayout';
 
 const Dashboard = () => {
 
-  const { loading, data, error } = useFetchData(`http://localhost:4000/api/v1/admin/stats`, "dashboard-stats")
+  const { loading, data, error } = useFetchData(`https://backendchat-htq5.onrender.com/api/v1/admin/stats`, "dashboard-stats")
   const { stats } = data || {};
 
   useErrors([{

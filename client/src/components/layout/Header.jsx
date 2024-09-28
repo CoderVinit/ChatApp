@@ -39,7 +39,7 @@ const Header = () => {
   const navigateToGroup = () => { navigate("/groups") }
   const LogoutHandler = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/v1/users/logout", { withCredentials: true });
+      const { data } = await axios.get("https://backendchat-htq5.onrender.com/api/v1/users/logout", { withCredentials: true });
       dispatch(userNotExists())
       toast.success(data.message)
     } catch (error) {

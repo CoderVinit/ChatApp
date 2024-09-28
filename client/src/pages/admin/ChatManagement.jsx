@@ -77,7 +77,7 @@ const ChatManagement = () => {
 
   const [rows, setRows] = useState([])
 
-  const { loading, data, error } = useFetchData(`http://localhost:4000/api/v1/admin/chats`, "dashboard-chats")
+  const { loading, data, error } = useFetchData(`https://backendchat-htq5.onrender.com/api/v1/admin/chats`, "dashboard-chats")
   useErrors([{
     isError: error,
     error: error,

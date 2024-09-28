@@ -90,7 +90,7 @@ const MessageManagement = () => {
 
   const [rows, setRows] = useState([])
 
-  const { loading, data, error } = useFetchData(`http://localhost:4000/api/v1/admin/messages`, "dashboard-messages")
+  const { loading, data, error } = useFetchData(`https://backendchat-htq5.onrender.com/api/v1/admin/messages`, "dashboard-messages")
 
   useErrors([{
     isError: error,

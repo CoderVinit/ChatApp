@@ -55,7 +55,7 @@ const UserManagement = () => {
 
   const [rows, setRows] = useState([])
 
-  const { loading, data, error } = useFetchData(`http://localhost:4000/api/v1/admin/users`, "user-data")
+  const { loading, data, error } = useFetchData(`https://backendchat-htq5.onrender.com/api/v1/admin/users`, "user-data")
 
   useErrors([{
     isError: error,

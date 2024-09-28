@@ -29,7 +29,7 @@ const App = () => {
 
   useEffect(() => {
 
-    axios.get("http://localhost:4000/api/v1/users/me", { withCredentials: true }).then(({ data }) => dispatch(userExists(data))).catch((err) => dispatch(userNotExists()))
+    axios.get("https://backendchat-htq5.onrender.com/api/v1/users/me", { withCredentials: true }).then(({ data }) => dispatch(userExists(data))).catch((err) => dispatch(userNotExists()))
 
   }, [dispatch])
 
