@@ -1,8 +1,6 @@
 
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
-// import { server } from '../../constants/Config'
-import { validate } from '../../../../server/lib/validators';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 
 const adminLogin = createAsyncThunk(
@@ -27,7 +25,7 @@ const adminLogin = createAsyncThunk(
 
 const getAdmin = createAsyncThunk(
   "admin/getAdmin",
-  async (secretKey) => {
+  async () => {
     try {
       const { data } = await axios.get(`http://localhost:4000/api/v1/admin/`, { withCredentials: true });
       return data.admin;
@@ -40,7 +38,7 @@ const getAdmin = createAsyncThunk(
 
 const adminLogout = createAsyncThunk(
   "admin/logout",
-  async (secretKey) => {
+  async () => {
     try {
       const { data } = await axios.get(`http://localhost:4000/api/v1/admin/logout`, { withCredentials: true });
       return data.message;
@@ -52,4 +50,4 @@ const adminLogout = createAsyncThunk(
 );
 
 
-export { adminLogin, getAdmin, adminLogout }
+export { adminLogin, adminLogout, getAdmin };

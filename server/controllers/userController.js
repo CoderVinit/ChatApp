@@ -1,4 +1,3 @@
-import { compare } from "bcrypt";
 import { User } from "../models/userModel.js";
 import { Chat } from "../models/chatModel.js";
 import { sendToken, cookieOption, emitEvent, uploadFilesToCloudinary } from "../utils/features.js";
@@ -7,6 +6,7 @@ import { TryCatch } from "../middleware/error.js";
 import { Request } from '../models/requestModels.js'
 import { NEW_REQUEST, REFETCH_CHATS } from "../constants/events.js";
 import { getOtherGroupMembers } from '../lib/helper.js'
+import bcrypt from "bcryptjs";
 
 
 
@@ -14,7 +14,6 @@ import { getOtherGroupMembers } from '../lib/helper.js'
 const newUser = TryCatch(async (req, res, next) => {
 
   const { name, username, password, bio } = req.body;
-
 
   const file = req.file;
 
@@ -44,7 +43,7 @@ const login = TryCatch(async (req, res, next) => {
     return next(new ErrorHandler("User Not Found", 401));
   }
 
-  const isMatched = await compare(password, user?.password);
+  const isMatched = bcrypt.compare(password, user?.password);
 
   if (!isMatched) return next(new ErrorHandler("Invalid Password", 400));
 
