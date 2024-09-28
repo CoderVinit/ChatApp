@@ -35,7 +35,7 @@ const Login = () => {
     }
 
     try {
-      const { data } = await axios.post("http://localhost:4000/api/v1/users/login", {
+      const { data } = await axios.post("https://backendchat-htq5.onrender.com/api/v1/users/login", {
         username: username.value,
         password: password.value
       }, config)
@@ -71,7 +71,7 @@ const Login = () => {
     }
 
     try {
-      const { data } = await axios.post("http://localhost:4000/api/v1/users/new", formData, config);
+      const { data } = await axios.post("https://backendchat-htq5.onrender.com/api/v1/users/new", formData, config);
       dispatch(userExists(data.user))
       toast.success(data.message, { id: toastId })
     } catch (error) {
