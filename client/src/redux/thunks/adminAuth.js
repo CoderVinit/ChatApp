@@ -14,7 +14,7 @@ const adminLogin = createAsyncThunk(
         }
       }
 
-      const { data } = await axios.post(`http://localhost:4000/api/v1/admin/varify`, { secretKey }, config);
+      const { data } = await axios.post(`https://backendchat-htq5.onrender.com/api/v1/admin/varify`, { secretKey }, config);
       return data.message;
     } catch (error) {
       throw error.response.data.message;
@@ -27,7 +27,7 @@ const getAdmin = createAsyncThunk(
   "admin/getAdmin",
   async () => {
     try {
-      const { data } = await axios.get(`http://localhost:4000/api/v1/admin/`, { withCredentials: true });
+      const { data } = await axios.get(`https://backendchat-htq5.onrender.com/api/v1/admin/`, { withCredentials: true });
       return data.admin;
     } catch (error) {
       throw error.response.data.message;
@@ -40,7 +40,7 @@ const adminLogout = createAsyncThunk(
   "admin/logout",
   async () => {
     try {
-      const { data } = await axios.get(`http://localhost:4000/api/v1/admin/logout`, { withCredentials: true });
+      const { data } = await axios.get(`https://backendchat-htq5.onrender.com/api/v1/admin/logout`, { withCredentials: true });
       return data.message;
     } catch (error) {
       throw error.response.data.message;

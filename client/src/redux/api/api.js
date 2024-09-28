@@ -6,7 +6,7 @@ const api = createApi({
 
 
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: `http://localhost:4000/api/v1/` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `https://backendchat-htq5.onrender.com/api/v1/` }),
   tagTypes: ["Chat", "User", "Message"],
 
   endpoints: (builder) => ({
