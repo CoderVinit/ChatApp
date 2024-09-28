@@ -5,7 +5,7 @@ const SocketContext = createContext()
 const getSocket = () => useContext(SocketContext)
 
 const SocketProvider = ({ children }) => {
-  const socket = useMemo(() => io('http://localhost:4000', { withCredentials: true }), [])
+  const socket = useMemo(() => io('https://backendchat-htq5.onrender.com', { withCredentials: true }), [])
   return (
     <SocketContext.Provider value={socket}>
       {children}
