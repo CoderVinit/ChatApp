@@ -7,6 +7,7 @@ import Table from '../../components/shared/Table'
 import { useErrors } from '../../hooks/Hooks'
 import { FileFormate, transformImage } from '../../lib/Features'
 import AdminLayout from './layout/AdminLayout'
+import { server } from '../../constants/Config'
 
 
 const columns = [
@@ -90,7 +91,7 @@ const MessageManagement = () => {
 
   const [rows, setRows] = useState([])
 
-  const { loading, data, error } = useFetchData(`https://backendchat-htq5.onrender.com/api/v1/admin/messages`, "dashboard-messages")
+  const { loading, data, error } = useFetchData(`${server}/api/v1/admin/messages`, "dashboard-messages")
 
   useErrors([{
     isError: error,

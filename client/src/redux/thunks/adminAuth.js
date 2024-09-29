@@ -1,7 +1,7 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { local } from '../../constants/Config';
+import { local, server } from '../../constants/Config';
 
 
 const adminLogin = createAsyncThunk(
@@ -15,7 +15,7 @@ const adminLogin = createAsyncThunk(
         }
       }
 
-      const { data } = await axios.post(`${local}/api/v1/admin/varify`, { secretKey }, config);
+      const { data } = await axios.post(`${server}/api/v1/admin/varify`, { secretKey }, config);
       return data.message;
     } catch (error) {
       throw error.response.data.message;

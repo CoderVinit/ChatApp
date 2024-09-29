@@ -32,7 +32,6 @@ const Login = () => {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
       }
     }
 
@@ -74,7 +73,7 @@ const Login = () => {
     }
 
     try {
-      const { data } = await axios.post(`${local}/api/v1/users/new`, formData, config);
+      const { data } = await axios.post(`${server}/api/v1/users/new`, formData, config);
       dispatch(userExists(data.user))
       toast.success(data.message, { id: toastId })
     } catch (error) {

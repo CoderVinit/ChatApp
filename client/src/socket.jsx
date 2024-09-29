@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo } from 'react'
 import io from 'socket.io-client'
-import { local } from './constants/Config'
+import { local, server } from './constants/Config'
 
 const SocketContext = createContext()
 const getSocket = () => useContext(SocketContext)
@@ -13,7 +13,7 @@ const SocketProvider = ({ children }) => {
       "Access-Control-Allow-Origin": "*",
     }
   }
-  const socket = useMemo(() => io(`${local}`, config), [])
+  const socket = useMemo(() => io(`${server}`, config), [])
   return (
     <SocketContext.Provider value={socket}>
       {children}

@@ -7,6 +7,7 @@ import { transformImage } from '../../lib/Features';
 import AdminLayout from './layout/AdminLayout';
 import { useFetchData } from '6pp';
 import { useErrors } from '../../hooks/Hooks';
+import { server } from '../../constants/Config';
 
 
 
@@ -77,7 +78,7 @@ const ChatManagement = () => {
 
   const [rows, setRows] = useState([])
 
-  const { loading, data, error } = useFetchData(`https://backendchat-htq5.onrender.com/api/v1/admin/chats`, "dashboard-chats")
+  const { loading, data, error } = useFetchData(`${server}/api/v1/admin/chats`, "dashboard-chats")
   useErrors([{
     isError: error,
     error: error,

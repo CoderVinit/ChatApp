@@ -5,6 +5,7 @@ import Table from '../../components/shared/Table';
 import { useErrors } from '../../hooks/Hooks';
 import { transformImage } from "../../lib/Features";
 import AdminLayout from './layout/AdminLayout';
+import { server } from '../../constants/Config';
 
 
 
@@ -55,7 +56,7 @@ const UserManagement = () => {
 
   const [rows, setRows] = useState([])
 
-  const { loading, data, error } = useFetchData(`https://backendchat-htq5.onrender.com/api/v1/admin/users`, "user-data")
+  const { loading, data, error } = useFetchData(`${server}/api/v1/admin/users`, "user-data")
 
   useErrors([{
     isError: error,

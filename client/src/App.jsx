@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { userExists, userNotExists } from './redux/reducres/auth'
 import { Toaster } from 'react-hot-toast'
 import { SocketProvider } from './socket'
-import { local } from './constants/Config'
+import { local, server } from './constants/Config'
 
 const Home = lazy(() => import("./pages/Home"))
 const Login = lazy(() => import("./pages/Login"))
@@ -37,7 +37,7 @@ const App = () => {
 
   useEffect(() => {
 
-    axios.get(`${local}/api/v1/users/me`, config).then(({ data }) => dispatch(userExists(data))).catch((err) => dispatch(userNotExists()))
+    axios.get(`${server}/api/v1/users/me`, config).then(({ data }) => dispatch(userExists(data))).catch((err) => dispatch(userNotExists()))
 
   }, [dispatch])
 
