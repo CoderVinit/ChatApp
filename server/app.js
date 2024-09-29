@@ -62,6 +62,7 @@ app.use((req, res, next) => {
 });
 
 app.use(cors(corsOptions))
+app.options("*", cors(corsOptions));
 
 app.use("/api/v1/users", userRoutes)
 app.use("/api/v1/chats", chatRoutes)
