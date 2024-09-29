@@ -12,7 +12,7 @@ const SocketProvider = ({ children }) => {
       "Content-Type": "application/json",
     }
   }
-  const socket = useMemo(() => io(`${server}`, config), [])
+  const socket = useMemo(() => io(`${server}`, { transports: ['websocket'] }, config), [])
   return (
     <SocketContext.Provider value={socket}>
       {children}
