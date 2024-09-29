@@ -13,7 +13,7 @@ const NotificationDialog = lazy(() => import('../specific/Notifications'))
 const NewGroupDialog = lazy(() => import("../specific/NewGroup"))
 import { useSelector } from 'react-redux'
 import { resetNotificationCount } from '../../redux/reducres/chat';
-import { local } from '../../constants/Config';
+import { server } from '../../constants/Config';
 
 
 
