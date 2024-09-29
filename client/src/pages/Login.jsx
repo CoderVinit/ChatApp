@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { VisuallyHiddenInput } from '../components/styles/StyledComponents'
 import { userExists } from '../redux/reducres/auth'
 import { Validator } from '../utils/UsernameValidators'
+import { local, server } from '../constants/Config'
 
 const Login = () => {
 
@@ -36,7 +37,7 @@ const Login = () => {
     }
 
     try {
-      const { data } = await axios.post("https://backendchat-htq5.onrender.com/api/v1/users/login", {
+      const { data } = await axios.post(`${server}/api/v1/users/login`, {
         username: username.value,
         password: password.value
       }, config)
@@ -67,12 +68,13 @@ const Login = () => {
     const config = {
       withCredentials: true,
       headers: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
+        "Access-Control-Allow-Origin": "*"
       }
     }
 
     try {
-      const { data } = await axios.post("https://backendchat-htq5.onrender.com/api/v1/users/new", formData, config);
+      const { data } = await axios.post(`${local}/api/v1/users/new`, formData, config);
       dispatch(userExists(data.user))
       toast.success(data.message, { id: toastId })
     } catch (error) {

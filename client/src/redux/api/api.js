@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { local } from "../../constants/Config"
 
 
 
@@ -6,7 +7,7 @@ const api = createApi({
 
 
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: `https://backendchat-htq5.onrender.com/api/v1/` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${local}/api/v1/` }),
   tagTypes: ["Chat", "User", "Message"],
 
   endpoints: (builder) => ({

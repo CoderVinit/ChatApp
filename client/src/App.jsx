@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { userExists, userNotExists } from './redux/reducres/auth'
 import { Toaster } from 'react-hot-toast'
 import { SocketProvider } from './socket'
+import { local } from './constants/Config'
 
 const Home = lazy(() => import("./pages/Home"))
 const Login = lazy(() => import("./pages/Login"))
@@ -26,10 +27,17 @@ const App = () => {
 
   const dispatch = useDispatch();
   const { user, loader } = useSelector(state => state.auth)
+  const config = {
+    withCredentials: true,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    }
+  }
 
   useEffect(() => {
 
-    axios.get("https://backendchat-htq5.onrender.com/api/v1/users/me", { withCredentials: true }).then(({ data }) => dispatch(userExists(data))).catch((err) => dispatch(userNotExists()))
+    axios.get(`${local}/api/v1/users/me`, config).then(({ data }) => dispatch(userExists(data))).catch((err) => dispatch(userNotExists()))
 
   }, [dispatch])
 

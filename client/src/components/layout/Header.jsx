@@ -13,6 +13,7 @@ const NotificationDialog = lazy(() => import('../specific/Notifications'))
 const NewGroupDialog = lazy(() => import("../specific/NewGroup"))
 import { useSelector } from 'react-redux'
 import { resetNotificationCount } from '../../redux/reducres/chat';
+import { local } from '../../constants/Config';
 
 
 
@@ -39,7 +40,7 @@ const Header = () => {
   const navigateToGroup = () => { navigate("/groups") }
   const LogoutHandler = async () => {
     try {
-      const { data } = await axios.get("https://backendchat-htq5.onrender.com/api/v1/users/logout", { withCredentials: true });
+      const { data } = await axios.get(`${local}/api/v1/users/logout`, { withCredentials: true });
       dispatch(userNotExists())
       toast.success(data.message)
     } catch (error) {

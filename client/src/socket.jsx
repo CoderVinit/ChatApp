@@ -1,11 +1,19 @@
 import { createContext, useContext, useMemo } from 'react'
 import io from 'socket.io-client'
+import { local } from './constants/Config'
 
 const SocketContext = createContext()
 const getSocket = () => useContext(SocketContext)
 
 const SocketProvider = ({ children }) => {
-  const socket = useMemo(() => io('https://backendchat-htq5.onrender.com', { withCredentials: true }), [])
+  const config = {
+    withCredentials: true,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    }
+  }
+  const socket = useMemo(() => io(`${local}`, config), [])
   return (
     <SocketContext.Provider value={socket}>
       {children}
