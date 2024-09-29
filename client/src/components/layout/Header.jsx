@@ -40,7 +40,7 @@ const Header = () => {
   const navigateToGroup = () => { navigate("/groups") }
   const LogoutHandler = async () => {
     try {
-      const { data } = await axios.get(`${local}/api/v1/users/logout`, { withCredentials: true });
+      const { data } = await axios.get(`${server}/api/v1/users/logout`, { withCredentials: true });
       dispatch(userNotExists())
       toast.success(data.message)
     } catch (error) {
