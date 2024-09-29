@@ -10,7 +10,6 @@ const SocketProvider = ({ children }) => {
     withCredentials: true,
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
     }
   }
   const socket = useMemo(() => io(`${server}`, config), [])
