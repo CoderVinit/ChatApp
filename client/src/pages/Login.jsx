@@ -95,11 +95,13 @@ const Login = () => {
 
 
   return (
-    <Container component={'main'} maxWidth='xs' sx={{ height: "100vh", display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Paper elevation={3} sx={{ padding: 4, display: "flex", flexDirection: 'column', alignItems: 'center' }}>
+    <Container component={'main'} maxWidth={"xs"} sx={{
+      height: "100vh", display: 'flex', justifyContent: 'center', alignItems: 'center'
+    }} >
+      <Paper elevation={4} variant={'outlined'} sx={{ padding: 4, display: "flex", flexDirection: 'column', alignItems: 'center', maxHeight: !isLogin ? "90%" : "none", }}>
         {
           isLogin ? (<>
-            <Typography variant='h5'>Sign In</Typography>
+            <Typography variant='h6'>Sign In</Typography>
             <form style={{ width: "100%", marginTop: "1rem" }} onSubmit={handleLogin}>
               <TextField label='username' value={username.value} onChange={username.changeHandler} fullWidth required margin='normal' variant='outlined' />
               <TextField label='password' value={password.value} onChange={password.changeHandler} type='password' fullWidth required margin='normal' variant='outlined' />
@@ -108,10 +110,10 @@ const Login = () => {
               <Button sx={{ marginTop: '1rem' }} fullWidth variant='text' onClick={toggleLogin} disabled={isLoading}>Register</Button>
             </form>
           </>) : (<>
-            <Typography variant='h5'>Register</Typography>
+            <Typography variant='h7' sx={{ fontWeight: "500" }}>Register</Typography>
             <form style={{ width: "100%", marginTop: "1rem" }} onSubmit={handleSignup}>
-              <Stack position='relative' width={'10rem'} margin='auto'>
-                <Avatar sx={{ height: "10rem", width: "10rem" }} objectfit={"contain"} src={avatar.preview} />
+              <Stack position='relative' width={'6rem'} margin='auto'>
+                <Avatar sx={{ height: "6rem", width: "6rem" }} objectfit={"contain"} src={avatar.preview} />
 
                 <IconButton sx={
                   {
@@ -140,8 +142,8 @@ const Login = () => {
                   </Typography>
                 )
               }
-              <TextField label='name' value={name.value} onChange={name.changeHandler} fullWidth required margin='normal' variant='outlined' />
-              <TextField label='username' value={username.value} onChange={username.changeHandler} fullWidth required margin='normal' variant='outlined' />
+              <TextField label='name' size="small" value={name.value} onChange={name.changeHandler} fullWidth required margin='normal' variant='outlined' />
+              <TextField label='username' size="small" value={username.value} onChange={username.changeHandler} fullWidth required margin='normal' variant='outlined' />
               {
                 username.error && (
                   <Typography color="error" variant='caption'>
@@ -149,8 +151,8 @@ const Login = () => {
                   </Typography>
                 )
               }
-              <TextField label='bio' value={bio.value} onChange={bio.changeHandler} fullWidth margin='normal' variant='outlined' />
-              <TextField label='password' value={password.value} onChange={password.changeHandler} type='password' fullWidth required margin='normal' variant='outlined' />
+              <TextField label='bio' size="small" value={bio.value} onChange={bio.changeHandler} fullWidth margin='normal' variant='outlined' />
+              <TextField label='password' size="small" value={password.value} onChange={password.changeHandler} type='password' fullWidth required margin='normal' variant='outlined' />
               {/* {
                 password.error && (
                   <Typography color="error" variant='caption'>
@@ -160,7 +162,7 @@ const Login = () => {
               } */}
               <Button sx={{ marginTop: '1rem' }} fullWidth variant='contained' color='primary' type='submit' disabled={isLoading}>SignUp</Button>
               <Typography sx={{ textAlign: 'center', marginTop: 2 }}>OR</Typography>
-              <Button fullWidth sx={{ marginTop: '1rem' }} variant='text' onClick={toggleLogin} disabled={isLoading}>Login</Button>
+              <Button fullWidth sx={{ marginTop: '1rem' }} size="small" variant='text' onClick={toggleLogin} disabled={isLoading}>Login</Button>
             </form>
           </>)
         }
