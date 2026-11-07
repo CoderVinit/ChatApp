@@ -146,7 +146,7 @@ const Chat = ({ chatId, user }) => {
 
   const allMessages = [...oldMessage, ...messages]
 
-  return chatDetails.isLoading ? <Skeleton /> : (
+  return chatDetails.isLoading ? <Stack spacing={1} p={2}>{Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} variant="rounded" height={44} width={i % 2 ? "55%" : "70%"} sx={{ alignSelf: i % 2 ? "flex-end" : "flex-start" }} />)}</Stack> : (
     <>
       <Stack ref={containerRef} boxSizing={"border-box"} padding={"1rem"} spacing={"1rem"} bgcolor="background.default" height={"calc(100% - 5rem)"}
         sx={{
@@ -163,15 +163,15 @@ const Chat = ({ chatId, user }) => {
         {UserTyping && <TypingLoader />}
         <div ref={BottomRef} />
       </Stack>
-      <form style={{ height: "5rem", background: "var(--surface)", borderTop: "1px solid var(--line)" }} onSubmit={submitHandler}>
+      <form style={{ height: "5rem", background: "var(--color-paper-2)", borderTop: "1px solid var(--color-rule)" }} onSubmit={submitHandler}>
         <Stack direction={"row"} alignItems={"center"} height={"100%"} padding={"0 1rem"} position={"relative"}>
-          <IconButton sx={{ position: "absolute", rotate: "30deg", left: "1.6rem", zIndex: 1, color: "text.secondary" }} onClick={handleFileOpen}>
+          <IconButton aria-label="Attach file" sx={{ position: "absolute", rotate: "30deg", left: "1.4rem", zIndex: 1, color: "text.secondary" }} onClick={handleFileOpen}>
             <AttachFileIcon />
           </IconButton>
           <InputBox placeholder='Type a message…' value={message} onChange={messageOnChange} />
-          <IconButton type='submit' sx={{
+          <IconButton type='submit' aria-label="Send message" sx={{
             backgroundColor: "primary.main",
-            color: "white",
+            color: "primary.contrastText",
             marginLeft: "1rem",
             padding: "0.5rem",
             "&:hover": {

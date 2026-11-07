@@ -55,9 +55,9 @@ const Header = () => {
   return (
     <>
       <Box sx={{ flexGrow: 1 }} height={"4rem"}>
-        <AppBar position="static" color="inherit" elevation={0} sx={{ bgcolor: "background.paper", borderBottom: "1px solid", borderColor: "divider" }}>
+        <AppBar position="static" color="inherit" elevation={0} sx={{ bgcolor: "background.paper", borderBottom: "1px solid", borderColor: "divider", boxShadow: "none" }}>
           <Toolbar >
-            <Typography variant='h6' fontWeight={700} color="text.primary" sx={{ display: { xs: "none", sm: "block" } }}>Chat</Typography>
+            <Typography variant='h6' color="text.primary" sx={{ display: { xs: "none", sm: "block" } }}>Chat</Typography>
             <Box sx={{ display: { xs: "block", sm: "none" } }}>
               <IconButton color='inherit' onClick={handleMobile}>
                 <MenuIcon />
@@ -91,7 +91,7 @@ const Header = () => {
 const IconBtn = ({ title, icon, onClick, value }) => {
   return (
     <Tooltip title={title}>
-      <IconButton sx={{ color: 'text.secondary', '&:hover': { color: 'text.primary', bgcolor: 'primary.light' } }} onClick={onClick}>
+      <IconButton sx={{ color: 'text.secondary', '&:hover': { color: 'text.primary', bgcolor: 'action.hover' } }} onClick={onClick}>
         {
           value ? <Badge badgeContent={value} color='error'>{icon}</Badge> : icon
         }

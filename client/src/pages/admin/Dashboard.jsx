@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   const AppBar = <Paper
     variant="outlined"
-    sx={{ padding: "2rem", margin: "2rem 0", borderRadius: "var(--r-2)" }}
+    sx={{ padding: "2rem", margin: "2rem 0", borderRadius: "var(--radius-card)" }}
   >
     <Stack direction={"row"} alignItems={"center"} spacing={"1rem"}>
       <AdminPanelSettingsIcon sx={{ fontSize: "3rem" }} />
@@ -62,7 +62,7 @@ const Dashboard = () => {
               variant="outlined"
               sx={{
                 padding: "3rem 3.5rem",
-                borderRadius: "var(--r-2)",
+                borderRadius: "var(--radius-card)",
                 width: { xs: "100%", lg: "50%" },
                 minWidth: "25rem",
               }}
@@ -74,7 +74,7 @@ const Dashboard = () => {
               variant="outlined"
               sx={{
                 padding: "1rem",
-                borderRadius: "var(--r-2)",
+                borderRadius: "var(--radius-card)",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -116,7 +116,7 @@ const Widget = ({ title, value, Icon }) =>
     sx={{
       padding: "2rem",
       margin: "2rem 0",
-      borderRadius: "var(--r-2)",
+      borderRadius: "var(--radius-card)",
       width: "20rem"
     }}
   >
@@ -124,8 +124,10 @@ const Widget = ({ title, value, Icon }) =>
       <Typography
         sx={{
           color: "text.primary",
+          fontFamily: "var(--font-body)",
+          fontVariantNumeric: "tabular-nums",
           borderRadius: "50%",
-          border: "5px solid var(--accent-soft)",
+          border: "5px solid var(--tint-accent)",
           width: "5rem",
           height: "5rem",
           display: "flex",

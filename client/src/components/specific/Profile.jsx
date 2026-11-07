@@ -33,7 +33,7 @@ const Profile = () => {
 
 const ProfileCard = ({ heading, text, Icon }) => (
   <Stack direction={"row"} alignItems={"center"} spacing={1.5} color="text.primary" marginBottom={"1.2rem"} width="100%" >
-    {Icon && <span style={{ color: "var(--muted)", display: "flex", marginRight: 12 }}>{Icon}</span>}
+    {Icon && <span style={{ color: "var(--color-muted)", display: "flex", marginRight: 12 }}>{Icon}</span>}
     <Stack>
       <Typography variant='body1'>{text}</Typography>
       <Typography color="text.secondary" variant='caption'>{heading}</Typography>

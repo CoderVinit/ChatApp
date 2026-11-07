@@ -149,7 +149,7 @@ const Group = () => {
         <TextField value={groupNameUpdatedValue} onChange={(e) => setGroupNameUpdatedValue(e.target.value)} />
         <IconButton onClick={updateGroupName} disabled={isLoadinGroupName}><DoneIcon /></IconButton>
       </> : (<>
-        <Typography variant='h4' fontWeight={700}>{groupName}</Typography>
+        <Typography variant='h4'>{groupName}</Typography>
         <IconButton onClick={() => setIsEdit(true)} disabled={isLoadinGroupName}>{<EditIcon />}</IconButton>
       </>)
     }
@@ -199,9 +199,9 @@ const Group = () => {
             {
               isLoadingRemoveMember ? <Skeleton /> : members?.map((i) => (
                 <UserItems key={i._id} user={i} isAdded styling={{
-                  border: "1px solid var(--line)",
+                  border: "1px solid var(--color-rule)",
                   padding: "1rem 2rem",
-                  borderRadius: "var(--r-1)"
+                  borderRadius: "var(--radius-inner)"
                 }}
                   handler={removeMemberHandler}
                 />

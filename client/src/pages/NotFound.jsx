@@ -7,9 +7,9 @@ const NotFound = () => (
   <Container maxWidth={"lg"} sx={{ height: "100vh" }}>
     <Stack alignItems="center" spacing={"2rem"} justifyContent={"center"} height={"100%"}>
       <ErrorIcon sx={{ fontSize: "5rem", color: "text.secondary" }} />
-      <Typography variant='h2' fontWeight={700}>404</Typography>
-      <Typography variant='h5' color='text.secondary'>Page not found</Typography>
-      <Link to="/" style={{ color: "var(--accent)", fontWeight: 600 }}>Go to Home</Link>
+      <Typography variant='h4'>404</Typography>
+      <Typography variant='h6' color='text.secondary'>Page not found</Typography>
+      <Link to="/" style={{ color: "var(--color-accent)", fontWeight: 600 }}>Go to Home</Link>
     </Stack>
   </Container>
 )

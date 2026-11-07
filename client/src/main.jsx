@@ -2,9 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import { MotionConfig } from 'framer-motion'
-import { rootVars } from './tokens'
 import theme from './theme'
 import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
@@ -16,7 +15,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <HelmetProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <GlobalStyles styles={rootVars} />
           <MotionConfig reducedMotion="user">
             <div onContextMenu={e => e.preventDefault()}>
               <App />

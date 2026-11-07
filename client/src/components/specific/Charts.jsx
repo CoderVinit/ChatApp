@@ -34,7 +34,7 @@ const LineChart = ({ value = [] }) => {
     datasets: [
       {
         data: value,
-        backgroundColor: tokens.accentSoft,
+        backgroundColor: tokens.paper3,
         label: 'Message',
         fill: true,
         borderColor: tokens.accent,
@@ -65,7 +65,7 @@ const DoughnutChart = ({ value = [], label = [] }) => {
         data: value,
         label: 'Total chats Vs Group chats',
         borderColor: [tokens.accent, tokens.muted],
-        backgroundColor: [tokens.accent, tokens.accentSoft],
+        backgroundColor: [tokens.accent, tokens.paper3],
         offset: 40,
       },
     ]

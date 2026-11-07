@@ -1,4 +1,4 @@
-import { Drawer, Grid, Skeleton } from '@mui/material';
+import { Drawer, Grid, Skeleton, Stack } from '@mui/material';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
@@ -17,6 +17,12 @@ import DeleteChatMenu from '../dialog/DeleteChatMenu';
 
 
 
+
+const ChatListSkeleton = () => (
+  <Stack spacing={1} p={2} aria-label="Loading chats">
+    {Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} variant="rounded" height={52} />)}
+  </Stack>
+)
 
 const AppLayout = () => (WrappedComponent) => {
   return (props) => {
@@ -83,7 +89,7 @@ const AppLayout = () => (WrappedComponent) => {
         <DeleteChatMenu dispatch={dispatch} deleteMenuAnchor={deleteMenuAnchor} />
 
         {
-          isLoading ? <Skeleton /> : (
+          isLoading ? null : (
             <Drawer open={isMobileMenu} onClick={handleMobileClose}>
               <ChatList w='70vw' chats={data?.chats} chatId={chatId} handleDeleteChat={handleDeleteChat} newMessagesAlert={newMessagesAlert} />
             </Drawer>
@@ -93,7 +99,7 @@ const AppLayout = () => (WrappedComponent) => {
         <Grid container height="calc(100vh - 4rem)">
           <Grid item sm={4} md={3} sx={{ display: { xs: "none", sm: "block" }, bgcolor: "background.paper", borderRight: "1px solid", borderColor: "divider" }} height="100%">
             {
-              isLoading ? (<Skeleton />) : (<ChatList chats={data?.chats} chatId={chatId} handleDeleteChat={handleDeleteChat} newMessagesAlert={newMessagesAlert} />)
+              isLoading ? (<ChatListSkeleton />) : (<ChatList chats={data?.chats} chatId={chatId} handleDeleteChat={handleDeleteChat} newMessagesAlert={newMessagesAlert} />)
             }
           </Grid>
           <Grid item xs={12} sm={8} md={5} lg={6} height="100%">

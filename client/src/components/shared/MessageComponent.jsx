@@ -17,15 +17,16 @@ const MessageComponent = ({ message, user }) => {
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.12 }}
       style={{
         alignSelf: sameSender ? "flex-end" : "flex-start",
-        color: sameSender ? "var(--accent-ink)" : "var(--ink)",
-        backgroundColor: sameSender ? "var(--accent)" : "var(--surface)",
-        border: sameSender ? "1px solid var(--accent)" : "1px solid var(--line)",
+        color: "var(--color-ink)",
+        backgroundColor: sameSender ? "var(--color-accent-deep)" : "var(--color-paper-3)",
+        border: sameSender ? "1px solid var(--color-accent-deep)" : "1px solid var(--color-rule)",
         width: "fit-content",
         maxWidth: "75%",
         padding: "0.55rem 0.9rem",
-        borderRadius: sameSender ? "var(--r-2) var(--r-2) 4px var(--r-2)" : "var(--r-2) var(--r-2) var(--r-2) 4px",
+        borderRadius: "var(--radius-card)",
         wordBreak: "break-word",
       }}
     >

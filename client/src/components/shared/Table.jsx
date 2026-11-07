@@ -11,7 +11,7 @@ const Table = ({ row, column, heading, rowHeight = 52 }) => {
         variant="outlined"
         sx={{
           padding: "1rem 4rem",
-          borderRadius: "var(--r-2)",
+          borderRadius: "var(--radius-card)",
           margin: "auto",
           width: "100%",
           overflow: "auto",
@@ -37,8 +37,8 @@ const Table = ({ row, column, heading, rowHeight = 52 }) => {
           sx={{
             border: "none",
             ".table-header": {
-              bgcolor: "primary.main",
-              color: "primary.contrastText"
+              bgcolor: "background.default",
+              color: "text.primary"
             }
           }}
         />

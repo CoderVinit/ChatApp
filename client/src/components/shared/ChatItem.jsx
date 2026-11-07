@@ -25,16 +25,18 @@ const ChatItem = ({
           display: "flex",
           alignItems: "center",
           gap: "0.9rem",
-          padding: "0.8rem 1rem",
+          padding: "0.75rem 1rem",
+          minHeight: 44,
           margin: "0.15rem 0.6rem",
-          borderRadius: "var(--r-1)",
-          backgroundColor: sameSender ? "var(--accent-soft)" : "transparent",
-          color: "var(--ink)",
+          borderRadius: "var(--radius-inner)",
+          backgroundColor: sameSender ? "var(--tint-accent)" : "transparent",
+          color: "var(--color-ink)",
+          fontWeight: sameSender ? 600 : 400,
         }}
       >
         <AvatarCard avatar={avatar} />
         <Stack flex={1} minWidth={0}>
-          <Typography fontWeight={600} noWrap>{name}</Typography>
+          <Typography fontWeight={500} noWrap>{name}</Typography>
           {isOnline && !newMessageAlert && <Typography variant="caption" color="text.secondary">Online</Typography>}
           {newMessageAlert && (
             <Typography variant="caption" color="text.secondary">
@@ -42,7 +44,7 @@ const ChatItem = ({
             </Typography>
           )}
         </Stack>
-        {newMessageAlert && <Badge badgeContent={newMessageAlert.count} color="primary" sx={{ mr: 1 }} />}
+        {newMessageAlert && <Badge badgeContent={newMessageAlert.count} color="secondary" sx={{ mr: 1 }} />}
       </motion.div>
     </Link>
   );

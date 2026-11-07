@@ -99,11 +99,11 @@ const Login = () => {
       minHeight: "100vh", display: 'flex', justifyContent: 'center', alignItems: 'center',
       bgcolor: "background.default", py: 2
     }} >
-      <Paper variant={'outlined'} sx={{ width: "100%", maxWidth: 400, borderRadius: "var(--r-2)", padding: 4, display: "flex", flexDirection: 'column', alignItems: 'center', maxHeight: !isLogin ? "90%" : "none", }}>
+      <Paper variant={'outlined'} sx={{ width: "100%", maxWidth: 400, borderRadius: "var(--radius-card)", padding: 4, display: "flex", flexDirection: 'column', alignItems: 'center', maxHeight: !isLogin ? "90%" : "none", }}>
         {
           isLogin ? (<>
-            <Typography variant='h5' fontWeight={700}>Welcome back</Typography>
-            <Typography variant='body2' color='text.secondary'>Sign in to continue chatting</Typography>
+            <Typography variant='h5'>Sign in</Typography>
+            <Typography variant='body2' color='text.secondary'>Use your username and password.</Typography>
             <form style={{ width: "100%", marginTop: "1rem" }} onSubmit={handleLogin}>
               <TextField label='Username' value={username.value} onChange={username.changeHandler} fullWidth required margin='normal' variant='outlined' />
               <TextField label='Password' value={password.value} onChange={password.changeHandler} type='password' fullWidth required margin='normal' variant='outlined' />
@@ -112,7 +112,7 @@ const Login = () => {
               <Button sx={{ marginTop: '1rem' }} fullWidth variant='text' onClick={toggleLogin} disabled={isLoading}>Register</Button>
             </form>
           </>) : (<>
-            <Typography variant='h5' fontWeight={700}>Create account</Typography>
+            <Typography variant='h5'>Create an account</Typography>
             <form style={{ width: "100%", marginTop: "1rem" }} onSubmit={handleSignup}>
               <Stack position='relative' width={'6rem'} margin='auto'>
                 <Avatar sx={{ height: "6rem", width: "6rem" }} src={avatar.preview} />

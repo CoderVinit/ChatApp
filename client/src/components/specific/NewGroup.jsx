@@ -56,7 +56,7 @@ const NewGroup = () => {
   return (
     <Dialog open={isNewGroup} onClose={closeHandler}>
       <Stack p={{ xs: "1rem", sm: "3rem" }} width={"25rem"} spacing={"2rem"}>
-        <DialogTitle variant="h5" fontWeight={700}>New Group</DialogTitle>
+        <DialogTitle variant="h5">New Group</DialogTitle>
         <TextField label="Group Name" value={groupName.value} onChange={groupName.changeHandler} />
         <Typography variant="body1">Members</Typography>
         <Stack>

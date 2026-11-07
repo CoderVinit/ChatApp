@@ -18,51 +18,51 @@ const Link = styled(LinkComponent)`
   color: inherit;
   display: block;
   &:hover {
-    background-color: var(--accent-soft);
+    background-color: var(--color-paper-3);
   }
 `;
 
 const InputBox = styled("input")`
   width: 100%;
-  height: 100%;
-  outline: none;
-  padding: 0.9rem 1.2rem 0.9rem 3rem;
-  border-radius: var(--r-1);
+  height: 3rem;
+  padding: 0 1.2rem 0 3rem;
+  border-radius: var(--radius-inner);
   font-size: 1rem;
   font-family: inherit;
-  background-color: var(--paper);
-  color: var(--ink);
-  border: 1px solid var(--line);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  border: 1px solid var(--color-muted);
   box-sizing: border-box;
-  &:focus-visible { border-color: var(--accent); outline-offset: 0; }
+  &:hover { border-color: var(--color-ink); }
+  &:focus-visible { border-color: var(--color-focus); outline: 2px solid var(--color-focus); outline-offset: 0; }
 `;
 
 
 const SearchField = styled("input")`
   padding:1rem 2rem;
   width:20vmax;
-  border:none;
-  outline:none;
-  border-radius:var(--r-1);
-  background-color:var(--surface);
-  border:1px solid var(--line);
-  color:var(--ink);
+  border-radius:var(--radius-inner);
+  background-color:var(--color-paper-2);
+  border:1px solid var(--color-muted);
+  color:var(--color-ink);
   font-family:inherit;
   font-size:1.1rem
 `
 
 
 const CurveButton = styled("button")`
-  border-radius:var(--r-1);
+  border-radius:var(--radius-inner);
   padding:1rem 2rem;
   border:none;
   cursor:pointer;
-  background-color:var(--accent);
-  color:var(--accent-ink);
+  background-color:var(--color-accent);
+  color:var(--color-accent-ink);
+  border-radius:var(--radius-pill);
+  min-height:44px;
   font-family:inherit;
-  font-weight:600;
+  font-weight:500;
   font-size:1.1rem;
-  &:hover{ background-color:var(--accent-deep); }
+  &:hover{ background-color:var(--color-accent-hi); }
 `
 const bounceAnimation = keyframes`
 0% {transform: scale(1);}

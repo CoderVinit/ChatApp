@@ -13,6 +13,7 @@ node_modules
 /.claude
 /dist
 /.agents
+/.hallmark
 
 # Editor directories and files
 .vscode/*

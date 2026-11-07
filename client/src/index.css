@@ -1,11 +1,16 @@
-/* hallmark v2.0.0 | theme: custom (utilitarian-soft) | genre: modern-minimal | signature: the open conversation | shape: three-pane workbench */
-/* critique: warm paper and one forest-green signal replace the stock indigo and the purple gradient; flat hairlines, no shadows */
-/* tokens live in src/tokens.js and are emitted at :root by GlobalStyles in main.jsx */
-html, body { overflow-x: clip; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-}
+/* Hallmark · shape: app screen · genre: modern-minimal · theme: Dusk (deal 3/3, seed modern-team-chat-app-d7ac·271c7467·2026-11-07·r1) · redesign: full
+ * nav: top bar over a three-pane workbench (kept) · signature: the open conversation · states: loading, empty, full · dusk: fog/periwinkle-apricot/glass
+ * axes: dark/grotesk-sans/cool · posture: committed · contrast: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, bubbles are the only filled periwinkle surface, kept to the deep step so the signal stays small */
+/* Hallmark · waive 28b · the video sits inside a chat message, below the fold and not the LCP · attachment videos are user uploads, so the chat has no poster frame to show */
+@import url("./tokens.css");
+@import url("./base.css");
+
+:root { --tint-accent: color-mix(in oklab, var(--color-accent) 16%, var(--color-paper-2)); }
+.MuiButtonBase-root:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.MuiOutlinedInput-root:has(:focus-visible) { outline: none; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: var(--color-rule); border-radius: 4px; }
+.MuiButton-root, .MuiIconButton-root { transition: transform var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out); }
+.MuiButton-root:active, .MuiIconButton-root:active { transform: translateY(1px); }
+.MuiButton-root:disabled, .MuiIconButton-root:disabled, .Mui-disabled { opacity: 0.5; cursor: not-allowed; }

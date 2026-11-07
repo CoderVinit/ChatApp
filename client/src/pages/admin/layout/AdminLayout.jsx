@@ -26,9 +26,9 @@ const Link = styled(LinkComponents)`
   text-decoration: none;
   border-radius: 2rem;
   padding: 1rem 2rem;
-  color: var(--ink);
+  color: var(--color-ink);
   &:hover {
-    color: var(--muted);
+    color: var(--color-muted);
   }
 `;
 
@@ -67,7 +67,7 @@ const Sidebar = ({ w = "100%" }) => {
 
   return (
     <Stack width={w} direction={"column"} padding={"3rem"} spacing={"3rem"}>
-      <Typography variant="h5" fontWeight={700}>
+      <Typography variant="h5">
         Chat
       </Typography>
 
@@ -76,10 +76,10 @@ const Sidebar = ({ w = "100%" }) => {
           <Link key={tab.path} to={tab.path}
             sx={
               location.pathname === tab.path && {
-                bgcolor: "primary.main",
-                color: "primary.contrastText",
+                bgcolor: "var(--tint-accent)",
+                color: "var(--color-ink)",
                 "&:hover": {
-                  color: "var(--accent-ink)"
+                  color: "var(--color-ink)"
                 }
               }
             }
