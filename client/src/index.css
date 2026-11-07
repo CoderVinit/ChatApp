@@ -1,0 +1,11 @@
+/* hallmark v2.0.0 | theme: custom (utilitarian-soft) | genre: modern-minimal | signature: the open conversation | shape: three-pane workbench */
+/* critique: warm paper and one forest-green signal replace the stock indigo and the purple gradient; flat hairlines, no shadows */
+/* tokens live in src/tokens.js and are emitted at :root by GlobalStyles in main.jsx */
+html, body { overflow-x: clip; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

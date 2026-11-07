@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { Link } from "../styles/StyledComponents";
-import { Box, Stack, Typography } from "@mui/material";
+import { Badge, Stack, Typography } from "@mui/material";
 import AvatarCard from "./AvatarCard";
 import { motion } from "framer-motion";
 
@@ -16,44 +16,33 @@ const ChatItem = ({
   handleDeleteChat,
 }) => {
   return (
-    <Link sx={{ padding: "0" }} to={`/chat/${_id}`} onContextMenu={(e) => handleDeleteChat(e, _id, groupChat)}>
+    <Link to={`/chat/${_id}`} onContextMenu={(e) => handleDeleteChat(e, _id, groupChat)}>
       <motion.div
-        initial={{
-          opacity: 0,
-          y: "-100%"
-        }}
+        initial={{ opacity: 0, y: -12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: index * 0.1 }}
+        transition={{ delay: Math.min(index * 0.05, 0.4) }}
         style={{
           display: "flex",
           alignItems: "center",
-          padding: "1rem",
-          backgroundColor: sameSender ? "black" : "unset",
-          color: sameSender ? "white" : 'unset',
-          position: 'relative',
+          gap: "0.9rem",
+          padding: "0.8rem 1rem",
+          margin: "0.15rem 0.6rem",
+          borderRadius: "var(--r-1)",
+          backgroundColor: sameSender ? "var(--accent-soft)" : "transparent",
+          color: "var(--ink)",
         }}
       >
         <AvatarCard avatar={avatar} />
-        <Stack>
-          <Typography>{name}</Typography>
-          {
-            newMessageAlert && (
-              <Typography>{newMessageAlert.count} New Messages</Typography>
-            )
-          }
+        <Stack flex={1} minWidth={0}>
+          <Typography fontWeight={600} noWrap>{name}</Typography>
+          {isOnline && !newMessageAlert && <Typography variant="caption" color="text.secondary">Online</Typography>}
+          {newMessageAlert && (
+            <Typography variant="caption" color="text.secondary">
+              {newMessageAlert.count} new {newMessageAlert.count > 1 ? "messages" : "message"}
+            </Typography>
+          )}
         </Stack>
-        {
-          isOnline && <Box sx={{
-            width: "10px",
-            height: "10px",
-            borderRadius: "50%",
-            bgcolor: "green",
-            position: "absolute",
-            top: "50%",
-            right: "1rem",
-            transform: "translateY(-50%)",
-          }} />
-        }
+        {newMessageAlert && <Badge badgeContent={newMessageAlert.count} color="primary" sx={{ mr: 1 }} />}
       </motion.div>
     </Link>
   );

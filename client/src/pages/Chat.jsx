@@ -7,7 +7,6 @@ import FileMenu from '../components/dialog/FileMenu';
 import AppLayout from '../components/layout/AppLayout';
 import MessageComponent from '../components/shared/MessageComponent';
 import { InputBox } from '../components/styles/StyledComponents';
-import { grayColor, orange } from '../constants/Color';
 import { NEW_MESSAGE, START_TYPING, STOP_TYPING, ALERT } from '../constants/events';
 import { useErrors, useSocketEvents } from '../hooks/Hooks';
 import { useChatDetailsQuery, useGetMessagesQuery } from '../redux/api/api';
@@ -149,7 +148,7 @@ const Chat = ({ chatId, user }) => {
 
   return chatDetails.isLoading ? <Skeleton /> : (
     <>
-      <Stack ref={containerRef} boxSizing={"border-box"} padding={"1rem"} spacing={"1rem"} bgcolor={grayColor} height={"90%"}
+      <Stack ref={containerRef} boxSizing={"border-box"} padding={"1rem"} spacing={"1rem"} bgcolor="background.default" height={"calc(100% - 5rem)"}
         sx={{
           overflowX: 'hidden',
           overflowY: "auto"
@@ -164,19 +163,19 @@ const Chat = ({ chatId, user }) => {
         {UserTyping && <TypingLoader />}
         <div ref={BottomRef} />
       </Stack>
-      <form style={{ height: "10%" }} onSubmit={submitHandler}>
-        <Stack direction={"row"} alignItems={"center"} height={"100%"} padding={"1rem"} position={"relative"}>
-          <IconButton sx={{ position: "absolute", rotate: "30deg", left: "1.5rem" }} onClick={handleFileOpen}>
+      <form style={{ height: "5rem", background: "var(--surface)", borderTop: "1px solid var(--line)" }} onSubmit={submitHandler}>
+        <Stack direction={"row"} alignItems={"center"} height={"100%"} padding={"0 1rem"} position={"relative"}>
+          <IconButton sx={{ position: "absolute", rotate: "30deg", left: "1.6rem", zIndex: 1, color: "text.secondary" }} onClick={handleFileOpen}>
             <AttachFileIcon />
           </IconButton>
-          <InputBox placeholder='Type your message here....' value={message} onChange={messageOnChange} />
+          <InputBox placeholder='Type a message…' value={message} onChange={messageOnChange} />
           <IconButton type='submit' sx={{
-            backgroundColor: orange,
+            backgroundColor: "primary.main",
             color: "white",
             marginLeft: "1rem",
             padding: "0.5rem",
             "&:hover": {
-              backgroundColor: "error.dark",
+              backgroundColor: "primary.dark",
             }
 
 

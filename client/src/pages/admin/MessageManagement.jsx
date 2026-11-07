@@ -37,7 +37,7 @@ const columns = [
             target='_blank'
             rel="noreferrer"
             style={{
-              color: "black"
+              color: "text.primary"
             }}
           >
             {RenderAttachments(file, i)}

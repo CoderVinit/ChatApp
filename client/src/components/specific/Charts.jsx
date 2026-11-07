@@ -1,6 +1,6 @@
 import { ArcElement, CategoryScale, Chart as ChartJs, Filler, Legend, LineElement, LinearScale, PointElement, Tooltip } from "chart.js";
 import { Doughnut, Line } from "react-chartjs-2";
-import { orange } from "../../constants/Color";
+import { tokens } from "../../tokens";
 import { last7dayes } from "../../lib/Features";
 
 ChartJs.register(Tooltip, Filler, CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Legend);
@@ -34,10 +34,10 @@ const LineChart = ({ value = [] }) => {
     datasets: [
       {
         data: value,
-        backgroundColor: '#f1f1f1', // green
+        backgroundColor: tokens.accentSoft,
         label: 'Message',
         fill: true,
-        borderColor: "red",
+        borderColor: tokens.accent,
       },
     ]
   }
@@ -64,8 +64,8 @@ const DoughnutChart = ({ value = [], label = [] }) => {
       {
         data: value,
         label: 'Total chats Vs Group chats',
-        borderColor: ["red", "#3e95cd"],
-        backgroundColor: [orange, "#d9edf7"],
+        borderColor: [tokens.accent, tokens.muted],
+        backgroundColor: [tokens.accent, tokens.accentSoft],
         offset: 40,
       },
     ]

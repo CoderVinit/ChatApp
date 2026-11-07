@@ -56,7 +56,7 @@ const NewGroup = () => {
   return (
     <Dialog open={isNewGroup} onClose={closeHandler}>
       <Stack p={{ xs: "1rem", sm: "3rem" }} width={"25rem"} spacing={"2rem"}>
-        <DialogTitle textAlign={"center"} variant="h4">New Group</DialogTitle>
+        <DialogTitle variant="h5" fontWeight={700}>New Group</DialogTitle>
         <TextField label="Group Name" value={groupName.value} onChange={groupName.changeHandler} />
         <Typography variant="body1">Members</Typography>
         <Stack>
@@ -67,7 +67,7 @@ const NewGroup = () => {
           })}
         </Stack>
         <Stack direction={"row"} justifyContent={"space-evenly"}>
-          <Button variant="text" color="error" size="large" onClick={closeHandler}>Cancel</Button>
+          <Button variant="text" color="inherit" size="large" onClick={closeHandler}>Cancel</Button>
           <Button variant="contained" color="primary" size="large" onClick={submitHandler} disabled={isLoadingNewGroup}>Create</Button>
         </Stack>
       </Stack>

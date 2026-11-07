@@ -1,6 +1,5 @@
 import { AppBar, Backdrop, Badge, Box, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import React, { Suspense, lazy, useState } from 'react';
-import { orange } from '../../constants/Color'
 import { Menu as MenuIcon, Search as SearchIcon, Add as AddIcon, Group as GroupIcon, Logout as LogoutIcon, NotificationsActiveRounded as NotificationsIcon } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
@@ -56,10 +55,10 @@ const Header = () => {
   return (
     <>
       <Box sx={{ flexGrow: 1 }} height={"4rem"}>
-        <AppBar position="static" sx={{ bgcolor: orange }}>
+        <AppBar position="static" color="inherit" elevation={0} sx={{ bgcolor: "background.paper", borderBottom: "1px solid", borderColor: "divider" }}>
           <Toolbar >
-            <Typography variant='h6' sx={{ display: { xs: "none", sm: "block" } }}>Chat</Typography>
-            <Box sx={{ display: { sx: "block", sm: "none" } }}>
+            <Typography variant='h6' fontWeight={700} color="text.primary" sx={{ display: { xs: "none", sm: "block" } }}>Chat</Typography>
+            <Box sx={{ display: { xs: "block", sm: "none" } }}>
               <IconButton color='inherit' onClick={handleMobile}>
                 <MenuIcon />
               </IconButton>
@@ -92,7 +91,7 @@ const Header = () => {
 const IconBtn = ({ title, icon, onClick, value }) => {
   return (
     <Tooltip title={title}>
-      <IconButton color='inherit' size='large' onClick={onClick}>
+      <IconButton sx={{ color: 'text.secondary', '&:hover': { color: 'text.primary', bgcolor: 'primary.light' } }} onClick={onClick}>
         {
           value ? <Badge badgeContent={value} color='error'>{icon}</Badge> : icon
         }

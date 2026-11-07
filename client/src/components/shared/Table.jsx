@@ -8,10 +8,10 @@ const Table = ({ row, column, heading, rowHeight = 52 }) => {
       height: "100vh"
     }}>
       <Paper
-        elevation={3}
+        variant="outlined"
         sx={{
           padding: "1rem 4rem",
-          borderRadius: "1rem",
+          borderRadius: "var(--r-2)",
           margin: "auto",
           width: "100%",
           overflow: "auto",
@@ -24,8 +24,7 @@ const Table = ({ row, column, heading, rowHeight = 52 }) => {
           textAlign={"center"}
           variant='h4'
           sx={{
-            margin: "2rem",
-            textTransform: "uppercase"
+            margin: "2rem"
           }}
         >{heading}</Typography>
         <DataGrid
@@ -38,8 +37,8 @@ const Table = ({ row, column, heading, rowHeight = 52 }) => {
           sx={{
             border: "none",
             ".table-header": {
-              bgcolor: "#191919",
-              color: "white"
+              bgcolor: "primary.main",
+              color: "primary.contrastText"
             }
           }}
         />

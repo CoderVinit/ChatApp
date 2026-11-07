@@ -1,35 +1,21 @@
-import { Avatar, AvatarGroup, Box, Stack } from '@mui/material'
+import { Avatar, Box } from '@mui/material'
 import React from 'react'
 import { transformImage } from '../../lib/Features'
 
-const AvatarCard = ({ avatar = [], max = 4 }) => {
+const AvatarCard = ({ avatar = [], max = 4, size = 44 }) => {
+  const shown = avatar.slice(0, max)
+  const step = size * 0.5
   return (
-    <Stack direction={"row"} spacing={0.5}>
-      <AvatarGroup max={max} sx={
-        { position: "relative" }
-      }>
-        <Box width={"5rem"} height={"3rem"} >
-          {
-            avatar.map((i, index) => (
-              <Avatar key={Math.random() * 100}
-                src={transformImage(i)}
-                alt={`avatar ${index}`}
-                sx={{
-                  width: '3rem',
-                  height: '3rem',
-                  position: 'absolute',
-                  left: {
-                    xs: `${0.5 + index}rem`,
-                    sm: `${index}rem`
-                  },
-                  marginRight: "2rem",
-                }}
-              />
-            ))
-          }
-        </Box>
-      </AvatarGroup>
-    </Stack>
+    <Box position="relative" flexShrink={0} height={size} width={size + Math.max(shown.length - 1, 0) * step}>
+      {shown.map((src, i) => (
+        <Avatar
+          key={i}
+          src={transformImage(src)}
+          alt={`avatar ${i}`}
+          sx={{ width: size, height: size, position: 'absolute', left: i * step, border: '2px solid', borderColor: 'background.paper' }}
+        />
+      ))}
+    </Box>
   )
 }
 

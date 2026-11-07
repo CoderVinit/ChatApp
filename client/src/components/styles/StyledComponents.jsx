@@ -1,6 +1,5 @@
 import { keyframes, Skeleton, styled } from "@mui/material";
 import { Link as LinkComponent } from "react-router-dom";
-import { grayColor } from "../../constants/Color";
 
 const VisuallyHiddenInput = styled("input")({
   border: 0,
@@ -16,21 +15,26 @@ const VisuallyHiddenInput = styled("input")({
 
 const Link = styled(LinkComponent)`
   text-decoration: none;
-  color: black;
-  padding: 1rem;
+  color: inherit;
+  display: block;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--accent-soft);
   }
 `;
 
 const InputBox = styled("input")`
   width: 100%;
   height: 100%;
-  border: none;
   outline: none;
-  padding: 1.2rem 3rem;
-  border-radius:1.5rem;
-  background-color:${grayColor}
+  padding: 0.9rem 1.2rem 0.9rem 3rem;
+  border-radius: var(--r-1);
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-sizing: border-box;
+  &:focus-visible { border-color: var(--accent); outline-offset: 0; }
 `;
 
 
@@ -39,29 +43,31 @@ const SearchField = styled("input")`
   width:20vmax;
   border:none;
   outline:none;
-  border-radius:1.5rem;
-  background-color:#f1f1f1;
+  border-radius:var(--r-1);
+  background-color:var(--surface);
+  border:1px solid var(--line);
+  color:var(--ink);
+  font-family:inherit;
   font-size:1.1rem
 `
 
 
 const CurveButton = styled("button")`
-  border-radius:1.5rem;
+  border-radius:var(--r-1);
   padding:1rem 2rem;
   border:none;
-  outline:none;
   cursor:pointer;
-  background-color:#2f2f2f;
-  color:white;
+  background-color:var(--accent);
+  color:var(--accent-ink);
+  font-family:inherit;
+  font-weight:600;
   font-size:1.1rem;
-  "&:hover"{
-    background-color:rgba(0,0,0,0.8)
-  }
+  &:hover{ background-color:var(--accent-deep); }
 `
 const bounceAnimation = keyframes`
-0% {transfrom: scale(1);}
-50% {transfrom: scale(1.5);}
-100% {transfrom: scale(1);}
+0% {transform: scale(1);}
+50% {transform: scale(1.5);}
+100% {transform: scale(1);}
 `
 const BouncingSkeleton = styled(Skeleton)(() => ({
   animation: `${bounceAnimation} 1s infinite`,

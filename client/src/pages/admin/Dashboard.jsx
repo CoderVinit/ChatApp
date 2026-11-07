@@ -19,8 +19,8 @@ const Dashboard = () => {
   }])
 
   const AppBar = <Paper
-    elevation={3}
-    sx={{ padding: "2rem", margin: "2rem 0", borderRadius: "1rem" }}
+    variant="outlined"
+    sx={{ padding: "2rem", margin: "2rem 0", borderRadius: "var(--r-2)" }}
   >
     <Stack direction={"row"} alignItems={"center"} spacing={"1rem"}>
       <AdminPanelSettingsIcon sx={{ fontSize: "3rem" }} />
@@ -30,7 +30,7 @@ const Dashboard = () => {
       <Typography
         sx={{
           display: { xs: "none", lg: "block" },
-          color: "rgba(0,0,0,0.7)",
+          color: "text.secondary",
           textAlign: "center"
         }}
       >{moment().format("MMMM Do YYYY")}</Typography>
@@ -59,10 +59,10 @@ const Dashboard = () => {
         loading ? <Skeleton height={"100vh"} /> : <Container component={"main"}>{AppBar}
           <Stack direction={{ xs: "column", sm: "row" }} flexWrap={"wrap"} sx={{ gap: "2rem" }} justifyContent={"center"} alignItems={{ xs: "center", lg: "stretch" }}>
             <Paper
-              elevation={3}
+              variant="outlined"
               sx={{
                 padding: "3rem 3.5rem",
-                borderRadius: "1.5rem",
+                borderRadius: "var(--r-2)",
                 width: { xs: "100%", lg: "50%" },
                 minWidth: "25rem",
               }}
@@ -71,10 +71,10 @@ const Dashboard = () => {
               <LineChart value={stats?.last7DaysMessages || []} />
             </Paper>
             <Paper
-              elevation={3}
+              variant="outlined"
               sx={{
                 padding: "1rem",
-                borderRadius: "1rem",
+                borderRadius: "var(--r-2)",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -112,20 +112,20 @@ const Dashboard = () => {
 
 const Widget = ({ title, value, Icon }) =>
   <Paper
-    elevation={3}
+    variant="outlined"
     sx={{
       padding: "2rem",
       margin: "2rem 0",
-      borderRadius: "1rem",
+      borderRadius: "var(--r-2)",
       width: "20rem"
     }}
   >
     <Stack alignItems={"center"} spacing={"1rem"}>
       <Typography
         sx={{
-          color: "rgba(0,0,0,0.7)",
+          color: "text.primary",
           borderRadius: "50%",
-          border: "5px solid #f1f1f1",
+          border: "5px solid var(--accent-soft)",
           width: "5rem",
           height: "5rem",
           display: "flex",

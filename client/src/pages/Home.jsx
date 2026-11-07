@@ -1,15 +1,15 @@
 import React from 'react'
 import AppLayout from '../components/layout/AppLayout'
-import { Box, Typography } from '@mui/material';
-import { grayColor } from '../constants/Color';
+import { Stack, Typography } from '@mui/material';
+import { ChatBubbleOutline as ChatIcon } from '@mui/icons-material';
 
 const Home = () => {
   return (
-    <Box height={"100%"} bgcolor={grayColor}>
-      <Typography textAlign={"center"} p={2} variant='h5'>
-        Select a friend for Chat!
-      </Typography>
-    </Box>
+    <Stack height="100%" alignItems="center" justifyContent="center" spacing={1} bgcolor="background.default">
+      <ChatIcon sx={{ fontSize: 56, color: "text.secondary" }} />
+      <Typography variant='h6' fontWeight={600}>Your messages</Typography>
+      <Typography variant='body2' color="text.secondary">Select a chat to start talking.</Typography>
+    </Stack>
   )
 }
 

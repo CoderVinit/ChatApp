@@ -12,7 +12,7 @@ const ChatList = ({
   const params = useParams();
   const chatId = params.chatId;
   return (
-    <Stack direction="column" width={w} overflow={"auto"} height={"100%"}>
+    <Stack direction="column" width={w} overflow={"auto"} height={"100%"} py={1}>
       {chats?.map((item, index) => {
         const { avatar, _id, name, groupChat, members } = item;
         const newMessageAlert = newMessagesAlert.find(

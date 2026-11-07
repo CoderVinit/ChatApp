@@ -40,7 +40,7 @@ const AddMemberDialog = ({ chatId }) => {
           }
         </Stack>
         <Stack direction={"row"} justifyContent={"space-between"}>
-          <Button color='error' onClick={closeHandler}>Cancel</Button>
+          <Button color='inherit' onClick={closeHandler}>Cancel</Button>
           <Button variant='contained' onClick={addMemberSubmitHandler} disabled={isLoadingAddMember}>Submit</Button>
         </Stack>
       </Stack>

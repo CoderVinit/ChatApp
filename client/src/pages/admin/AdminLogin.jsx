@@ -26,7 +26,7 @@ const AdminLogin = () => {
 
   return (
     <Container component={'main'} maxWidth='xs' sx={{ height: "100vh", display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Paper elevation={3} sx={{ padding: 4, display: "flex", flexDirection: 'column', alignItems: 'center' }}>
+      <Paper variant="outlined" sx={{ padding: 4, display: "flex", flexDirection: 'column', alignItems: 'center' }}>
 
         <Typography variant='h5'>Admin Login</Typography>
         <form style={{ width: "100%", marginTop: "1rem" }} onSubmit={submitHandler}>

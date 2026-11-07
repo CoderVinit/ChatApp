@@ -26,9 +26,9 @@ const Link = styled(LinkComponents)`
   text-decoration: none;
   border-radius: 2rem;
   padding: 1rem 2rem;
-  color: black;
+  color: var(--ink);
   &:hover {
-    color: rgba(0, 0, 0, 0.54);
+    color: var(--muted);
   }
 `;
 
@@ -67,7 +67,7 @@ const Sidebar = ({ w = "100%" }) => {
 
   return (
     <Stack width={w} direction={"column"} padding={"3rem"} spacing={"3rem"}>
-      <Typography variant="h5" textTransform={"uppercase"}>
+      <Typography variant="h5" fontWeight={700}>
         Chat
       </Typography>
 
@@ -76,10 +76,10 @@ const Sidebar = ({ w = "100%" }) => {
           <Link key={tab.path} to={tab.path}
             sx={
               location.pathname === tab.path && {
-                bgcolor: "#191919",
-                color: "white",
+                bgcolor: "primary.main",
+                color: "primary.contrastText",
                 "&:hover": {
-                  color: "white"
+                  color: "var(--accent-ink)"
                 }
               }
             }
@@ -145,7 +145,7 @@ const AdminLayout = ({ children }) => {
         md={8}
         lg={9}
         sx={{
-          bgcolor: "#f5f5f5",
+          bgcolor: "background.default",
         }}
       >
         {children}

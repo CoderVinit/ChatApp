@@ -133,8 +133,8 @@ const Group = () => {
 
     <Tooltip title="back">
       <IconButton sx={{
-        position: "absolute", top: "2rem", left: "2rem", bgcolor: "rgba(0,0,0,0.7)", color: "white", "&:hover": {
-          bgcolor: "rgba(0,0,0,0.8)"
+        position: "absolute", top: "2rem", left: "2rem", bgcolor: "primary.main", color: "primary.contrastText", "&:hover": {
+          bgcolor: "primary.dark"
         }
       }} onClick={navigateBack} >
         <KeyboardBackspaceIcon />
@@ -149,7 +149,7 @@ const Group = () => {
         <TextField value={groupNameUpdatedValue} onChange={(e) => setGroupNameUpdatedValue(e.target.value)} />
         <IconButton onClick={updateGroupName} disabled={isLoadinGroupName}><DoneIcon /></IconButton>
       </> : (<>
-        <Typography variant='h4'>{groupName}</Typography>
+        <Typography variant='h4' fontWeight={700}>{groupName}</Typography>
         <IconButton onClick={() => setIsEdit(true)} disabled={isLoadinGroupName}>{<EditIcon />}</IconButton>
       </>)
     }
@@ -176,7 +176,7 @@ const Group = () => {
 
   return myGroups.isLoading ? <LayoutLoader /> : (
     <Grid container height={"100vh"}>
-      <Grid item sx={{ display: { xs: "none", sm: "block" }, overflowY: "auto", height: "100%" }} position={"relative"} sm={4} bgcolor={"bisque"}> <GroupList myGroup={myGroups?.data?.groups} chatId={chatId} /></Grid>
+      <Grid item sx={{ display: { xs: "none", sm: "block" }, overflowY: "auto", height: "100%" }} position={"relative"} sm={4} bgcolor="background.paper" borderRight="1px solid" borderColor="divider"> <GroupList myGroup={myGroups?.data?.groups} chatId={chatId} /></Grid>
       <Grid item xs={12} sm={8} sx={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative", padding: "1rem 3rem" }}>
 
         {IconsBtn}
@@ -199,9 +199,9 @@ const Group = () => {
             {
               isLoadingRemoveMember ? <Skeleton /> : members?.map((i) => (
                 <UserItems key={i._id} user={i} isAdded styling={{
-                  boxShadow: "0 0 0.5rem rgba(0,0,0,0.2)",
+                  border: "1px solid var(--line)",
                   padding: "1rem 2rem",
-                  borderRadius: "1rem"
+                  borderRadius: "var(--r-1)"
                 }}
                   handler={removeMemberHandler}
                 />

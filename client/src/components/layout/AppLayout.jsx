@@ -91,7 +91,7 @@ const AppLayout = () => (WrappedComponent) => {
         }
 
         <Grid container height="calc(100vh - 4rem)">
-          <Grid item sm={4} md={3} sx={{ display: { xs: "none", sm: "block" } }} height="100%">
+          <Grid item sm={4} md={3} sx={{ display: { xs: "none", sm: "block" }, bgcolor: "background.paper", borderRight: "1px solid", borderColor: "divider" }} height="100%">
             {
               isLoading ? (<Skeleton />) : (<ChatList chats={data?.chats} chatId={chatId} handleDeleteChat={handleDeleteChat} newMessagesAlert={newMessagesAlert} />)
             }
@@ -101,7 +101,7 @@ const AppLayout = () => (WrappedComponent) => {
           </Grid>
           <Grid
             item md={4} lg={3} height="100%"
-            sx={{ display: { xs: 'none', md: "block" }, padding: "2rem", bgcolor: "rgba(0, 0, 0, 0.85)" }}>
+            sx={{ display: { xs: 'none', md: "block" }, padding: "2rem", bgcolor: "background.paper", borderLeft: "1px solid", borderColor: "divider" }}>
             <Profile />
           </Grid>
         </Grid >

@@ -15,11 +15,10 @@ const Profile = () => {
       <Avatar
         src={transformImage(user?.data?.avatar.url)}
         sx={{
-          width: 200,
-          height: 200,
-          objectFit: "contain",
-          marginBottom: "1rem",
-          border: "4px solid white",
+          width: 160,
+          height: 160,
+          marginBottom: "1.5rem",
+          border: "1px solid", borderColor: "divider",
         }}
         alt={user?.data?.name}
       />
@@ -33,11 +32,11 @@ const Profile = () => {
 
 
 const ProfileCard = ({ heading, text, Icon }) => (
-  <Stack direction={"row"} alignItems={"center"} specing={"1rem"} color={"white"} textAlign={"center"} marginBottom={"1rem"} >
-    {Icon && Icon}
+  <Stack direction={"row"} alignItems={"center"} spacing={1.5} color="text.primary" marginBottom={"1.2rem"} width="100%" >
+    {Icon && <span style={{ color: "var(--muted)", display: "flex", marginRight: 12 }}>{Icon}</span>}
     <Stack>
       <Typography variant='body1'>{text}</Typography>
-      <Typography color={"gray"} variant='caption'>{heading}</Typography>
+      <Typography color="text.secondary" variant='caption'>{heading}</Typography>
     </Stack>
   </Stack >
 )
